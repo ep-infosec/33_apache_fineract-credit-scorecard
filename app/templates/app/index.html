@@ -1,0 +1,122 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+ 
+    <!-- ******Header****** -->
+    <header class="header text-center">
+        <div class="container">
+            <div class="branding">
+                <h1 class="logo">
+                    <span aria-hidden="true" class="icon_documents_alt icon"></span>
+                    <span class="text-highlight">Fineract</span><span class="text-bold"> Credit Scorecard</span>
+                </h1>
+            </div>
+            <div class="tagline">
+                <p>A Machine Learning Platform for Credit Scoring</p>
+            </div>
+            
+                <div class="main-search-box pt-3 pb-4 d-inline-block">
+                    <form class="form-inline search-form justify-content-center" action="" method="get">
+            
+                    <input type="text" placeholder="Enter search terms..." name="search" class="form-control search-input">
+                    
+                    <button type="submit" class="btn search-btn" value="Search"><i class="fas fa-search"></i></button>
+                    
+                </form>
+                </div>
+                
+            <!-- <div class="social-container"> -->
+                <!-- Replace with your Github Button -->
+                <!-- <div class="github-btn mb-2">
+                    <a class="github-button" href="https://github.com/xriley/PrettyDocs-Theme" data-size="large" aria-label="Star xriley/PrettyDocs-Theme on GitHub">Star</a>
+                    <a class="github-button" href="https://github.com/xriley" data-size="large" aria-label="Follow @xriley on GitHub">Follow @xriley</a>
+                </div> -->
+                <!-- Replace with your Twitter Button -->
+                <!-- <div class="twitter-tweet">
+                    <a href="https://twitter.com/3rdwave_themes?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">Follow @3rdwave_themes</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                </div> -->
+                <!-- Replace with your Facebook Button -->
+                <!-- <div class="fb-like" data-href="https://themes.3rdwavemedia.com/" data-width="" data-layout="button_count" data-action="like" data-size="small" data-share="true"></div>         
+                </div> -->
+                
+        </div>
+    </header>
+    
+    <section class="cards-section text-center">
+        <div class="container">
+
+            <h2 id="get-started" class="title">Getting started is easy!</h2>
+            <div class="intro">
+                <p>Download a client SDK for your relevant platform to start using the API</p>
+                <div class="cta-container">
+                    <a class="btn btn-primary" href="{% url 'docs' %}#download"><i class="bi bi-download"></i> Download Client SDK</a>
+                </div>
+            </div>
+            <div id="cards-wrapper" class="cards-wrapper row">
+                <div class="item item-orange col-lg-4 col-6">
+                    <div class="item-inner">
+                        <div class="icon-holder">
+                            <i class="icon bi bi-lightning-charge"></i>
+                        </div>
+                        <h3 class="title">Quick Start</h3>
+                        <p class="intro">Explore credit scoring as a service</p>
+                        <a class="link" href="{% url 'docs' %}#quickstart"><span></span></a>
+                    </div>
+                </div>
+                <div class="item item-primary item-2 col-lg-4 col-6">
+                    <div class="item-inner">
+                        <div class="icon-holder">
+                            <span aria-hidden="true" class="icon bi bi-files"></span>
+                        </div>
+                        <h3 class="title">Docs</h3>
+                        <p class="intro">Extensive API documentation</p>
+                        <a class="link" href="{% url 'docs' %}"><span></span></a>
+                    </div>
+                </div>
+                <div class="item item-blue col-lg-4 col-6">
+                    <div class="item-inner">
+                        <div class="icon-holder">
+                            <span aria-hidden="true" class="icon bi bi-tv"></span>
+                        </div>
+                        <h3 class="title">Live Demo</h3>
+                        <p class="intro">Try our online scoring toolkit from your browser.</p>
+                        <a class="link" href="#"><span></span></a>
+                    </div>
+                </div>
+                
+                <div class="item item-green col-lg-4 col-6">
+                    <div class="item-inner">
+                        <div class="icon-holder">
+                            <span aria-hidden="true" class="icon bi bi-journal-code"></span>
+                        </div>
+                        <h3 class="title">Swagger Docs</h3>
+                        <p class="intro">Explore web API documentation with swagger</p>
+                        <a class="link" href="/api-docs/swagger-ui" target="_blank"><span></span></a>
+                    </div>
+                </div>
+                <div class="item item-purple col-lg-4 col-6">
+                    <div class="item-inner">
+                        <div class="icon-holder">
+                            <span aria-hidden="true" class="icon bi bi-file-earmark-code"></span>
+                        </div>
+                        <h3 class="title">Redoc</h3>
+                        <p class="intro">Explore web API documentation with redoc</p>
+                        <a class="link" href="/api-docs/redoc" target="_blank"><span></span></a>
+                    </div>
+                </div>
+                <div class="item item-pink col-lg-4 col-6">
+                    <div class="item-inner">
+                        <div class="icon-holder">
+                            <span aria-hidden="true" class="icon bi bi-code-slash"></span>
+                        </div>
+                        <h3 class="title">Browsable API</h3>
+                        <p class="intro">Explore django rest framework browsable API.</p>
+                        <a class="link" href="/api/v1/" target="_blank"><span></span></a>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+    
+{% endblock %}

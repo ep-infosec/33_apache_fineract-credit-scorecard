@@ -1,0 +1,547 @@
+openapi: 3.0.3
+info:
+  title: Fineract Credit Scorecard
+  version: 0.1.0-SNAPSHOT
+  description: An API module for credit risk assessment
+  license:
+    name: Apache-2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+paths:
+  /api/v1/algorithms:
+    get:
+      operationId: algorithms_list
+      description: ''
+      tags:
+        - algorithms
+      security:
+        - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Algorithm'
+          description: ''
+    post:
+      operationId: algorithms_create
+      description: ''
+      tags:
+        - algorithms
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Algorithm'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Algorithm'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Algorithm'
+        required: true
+      security:
+        - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Algorithm'
+          description: ''
+  /api/v1/algorithms/{id}:
+    get:
+      operationId: algorithms_retrieve
+      description: ''
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          description: A unique integer value identifying this algorithm.
+          required: true
+      tags:
+        - algorithms
+      security:
+        - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Algorithm'
+          description: ''
+    put:
+      operationId: algorithms_update
+      description: ''
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          description: A unique integer value identifying this algorithm.
+          required: true
+      tags:
+        - algorithms
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Algorithm'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Algorithm'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Algorithm'
+        required: true
+      security:
+        - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Algorithm'
+          description: ''
+    patch:
+      operationId: algorithms_partial_update
+      description: ''
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          description: A unique integer value identifying this algorithm.
+          required: true
+      tags:
+        - algorithms
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Algorithm'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Algorithm'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Algorithm'
+        required: true
+      security:
+        - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Algorithm'
+          description: ''
+    delete:
+      operationId: algorithms_destroy
+      description: ''
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          description: A unique integer value identifying this algorithm.
+          required: true
+      tags:
+        - algorithms
+      security:
+        - {}
+      responses:
+        '204':
+          description: No response body
+  /api/v1/algorithms/predict:
+    post:
+      operationId: algorithms_predict
+      description: Predict credit risk for a loan
+      parameters:
+        - in: query
+          name: classifier
+          schema:
+            type: string
+          description: The algorithm/classifier to use
+          required: true
+          examples:
+            Example1:
+              value: RandomForestClassifier
+              summary: Example 1
+        - in: query
+          name: dataset
+          schema:
+            type: string
+          description: The name of the dataset
+          examples:
+            Example1:
+              value: german
+              summary: Example 1
+        - in: query
+          name: status
+          schema:
+            type: string
+          description: The status of the algorithm
+          deprecated: true
+          examples:
+            Example1:
+              value: production
+              summary: Example 1
+        - in: query
+          name: version
+          schema:
+            type: string
+            default: 0.0.1
+          description: Algorithm version
+          required: true
+          examples:
+            Example1:
+              value: 0.0.1
+              summary: Example 1
+      tags:
+        - algorithms
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: {}
+              description: Unspecified request body
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              additionalProperties: {}
+              description: Unspecified request body
+          multipart/form-data:
+            schema:
+              type: object
+              additionalProperties: {}
+              description: Unspecified request body
+      security:
+        - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PredictionResponse'
+          description: ''
+  /api/v1/datasets:
+    get:
+      operationId: datasets_list
+      description: ''
+      tags:
+        - datasets
+      security:
+        - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dataset'
+          description: ''
+  /api/v1/datasets/{id}:
+    get:
+      operationId: datasets_retrieve
+      description: ''
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          description: A unique integer value identifying this dataset.
+          required: true
+      tags:
+        - datasets
+      security:
+        - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dataset'
+          description: ''
+  /api/v1/requests:
+    get:
+      operationId: requests_list
+      description: ''
+      tags:
+        - requests
+      security:
+        - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PredictionRequest'
+          description: ''
+    post:
+      operationId: requests_create
+      description: ''
+      tags:
+        - requests
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PredictionRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PredictionRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PredictionRequest'
+        required: true
+      security:
+        - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PredictionRequest'
+          description: ''
+  /api/v1/requests/{id}:
+    get:
+      operationId: requests_retrieve
+      description: ''
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          description: A unique integer value identifying this prediction request.
+          required: true
+      tags:
+        - requests
+      security:
+        - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PredictionRequest'
+          description: ''
+    put:
+      operationId: requests_update
+      description: ''
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          description: A unique integer value identifying this prediction request.
+          required: true
+      tags:
+        - requests
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PredictionRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PredictionRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PredictionRequest'
+        required: true
+      security:
+        - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PredictionRequest'
+          description: ''
+    patch:
+      operationId: requests_partial_update
+      description: ''
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          description: A unique integer value identifying this prediction request.
+          required: true
+      tags:
+        - requests
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PredictionRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PredictionRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PredictionRequest'
+        required: true
+      security:
+        - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PredictionRequest'
+          description: ''
+    delete:
+      operationId: requests_destroy
+      description: ''
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          description: A unique integer value identifying this prediction request.
+          required: true
+      tags:
+        - requests
+      security:
+        - {}
+      responses:
+        '204':
+          description: No response body
+components:
+  schemas:
+    Algorithm:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        classifier:
+          type: string
+          maxLength: 128
+        description:
+          type: string
+          nullable: true
+        version:
+          type: string
+          maxLength: 128
+        status:
+          type: string
+          maxLength: 128
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        created_by:
+          type: string
+          maxLength: 128
+        dataset:
+          type: string
+          nullable: true
+      required:
+        - classifier
+        - created_at
+        - created_by
+        - id
+        - status
+        - version
+    Dataset:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 128
+        region:
+          type: string
+          maxLength: 128
+      required:
+        - id
+        - name
+        - region
+    PredictionRequest:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        input:
+          type: object
+          additionalProperties: {}
+        response:
+          type: object
+          additionalProperties: {}
+        prediction:
+          type: string
+          maxLength: 128
+        feedback:
+          type: string
+          nullable: true
+          maxLength: 128
+        notes:
+          type: string
+          nullable: true
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        created_by:
+          type: string
+          maxLength: 128
+        algorithm:
+          type: integer
+      required:
+        - created_at
+        - created_by
+        - id
+        - input
+        - prediction
+        - response
+    PredictionResponse:
+      type: object
+      properties:
+        probability:
+          type: number
+          format: float
+        label:
+          type: string
+        method:
+          type: string
+        color:
+          type: string
+        wilkis_lambda:
+          type: number
+          format: float
+        pillais_trace:
+          type: number
+          format: float
+        hotelling_tawley:
+          type: number
+          format: float
+        roys_reatest_roots:
+          type: number
+          format: float
+        request_id:
+          type: integer
+      required:
+        - color
+        - hotelling_tawley
+        - label
+        - method
+        - pillais_trace
+        - probability
+        - request_id
+        - roys_reatest_roots
+        - wilkis_lambda
+servers:
+  - url: http://127.0.0.1:8000
+    description: server on localhost
